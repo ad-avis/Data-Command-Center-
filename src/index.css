@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-serif: Georgia, serif;
+
+  /* Immersive UI Palette */
+  --color-primary: #ffb4aa;
+  --color-primary-container: #ff4e00;
+  --color-on-primary-container: #fff7f6;
+  
+  --color-surface: #0a0502;
+  --color-surface-dim: #0a0502;
+  --color-surface-bright: #3a1510;
+  --color-surface-container-lowest: #050201;
+  --color-surface-container-low: #120805;
+  --color-surface-container: #1a0c08;
+  --color-surface-container-high: #24120c;
+  --color-surface-container-highest: #2e1810;
+  
+  --color-on-surface: #ffffff;
+  --color-on-surface-variant: rgba(255, 255, 255, 0.6);
+  
+  --color-outline: rgba(255, 200, 150, 0.15);
+  --color-outline-variant: rgba(255, 200, 150, 0.08);
+  
+  --color-error: #ffb4ab;
+  --color-error-container: #93000a;
+  
+  --color-success: #46D369;
+  --color-warning: #F5C518;
+
+  --color-glass-surface: rgba(255, 80, 20, 0.12);
+}
+
+@layer base {
+  body {
+    @apply bg-[#0a0502] text-on-surface font-sans antialiased selection:bg-primary-container selection:text-white;
+  }
+}
+
+.atmosphere {
+  @apply fixed inset-0 pointer-events-none -z-10 overflow-hidden;
+  background: 
+    radial-gradient(circle at 50% 30%, #3a1510 0%, transparent 60%),
+    radial-gradient(circle at 10% 80%, #ff4e00 0%, transparent 40%);
+  filter: blur(80px);
+  opacity: 0.6;
+}
+
+.glass-card {
+  @apply bg-glass-surface backdrop-blur-[30px] border border-outline-variant transition-all duration-200;
+}
+
+.glass-card:hover {
+  @apply bg-white/5 border-primary-container/40 shadow-[0_0_20px_rgba(255,78,0,0.15)];
+}
+
+.status-glow-green { box-shadow: 0 0 12px rgba(70, 211, 105, 0.3); }
+.status-glow-red { box-shadow: 0 0 12px rgba(229, 9, 20, 0.3); }
+.status-glow-yellow { box-shadow: 0 0 12px rgba(245, 197, 24, 0.3); }
+
+.flow-path {
+  stroke-dasharray: 8;
+  animation: flow 30s linear infinite;
+}
+
+@keyframes flow {
+  from { stroke-dashoffset: 1000; }
+  to { stroke-dashoffset: 0; }
+}
+
+/* Hide scrollbar but keep functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
